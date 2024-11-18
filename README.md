@@ -1,2 +1,2 @@
 # wireless-docs
-Documentation for Wireless Communication Notes
+Documentation for Wireless Communication
