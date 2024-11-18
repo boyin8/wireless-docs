@@ -26,7 +26,7 @@ Wireless channels exhibit unique characteristics due to the interaction between 
 - **Definition**: Signal attenuation caused by large obstacles (e.g., buildings, mountains).
 - **Modeling**:
 
-  - Typically modeled as a log-normal distribution over distance.
+      - Typically modeled as a log-normal distribution over distance.
 
 ### **1.1.4 Path Loss**
 - **Definition**: Reduction in signal power as it propagates through space.
@@ -46,6 +46,7 @@ Wireless channels are commonly classified based on their characteristics:
 
        - All frequency components of the signal experience the same fading.
        - Occurs when the channel bandwidth is much larger than the signal bandwidth.
+
 2. **Frequency-Selective Fading**:
 
        - Different frequency components experience different fading.
@@ -56,6 +57,7 @@ Wireless channels are commonly classified based on their characteristics:
 
         - Channel changes rapidly within the symbol duration.
         - Caused by high mobility or large Doppler spread.
+
 2. **Slow Fading**:
 
         - Channel remains constant over several symbol durations.
@@ -77,14 +79,17 @@ Wireless channels are commonly classified based on their characteristics:
 ## **1.3 Common Channel Models**
 ### **1.3.1 Free-Space Path Loss Model**
 - **Description**:
-  - Idealized model for LOS communication.
-  - Path loss is proportional to the square of the distance.
+- 
+      - Idealized model for LOS communication.
+      - Path loss is proportional to the square of the distance.
+
 - **Path Loss Formula**:
-  \[
+
+  $$
   PL(d) = 20 \log_{10}(d) + 20 \log_{10}(f) - 147.55 \quad (\text{dB})
-  \]
-  - \(d\): Distance (in meters).
-  - \(f\): Frequency (in Hz).
+  $$
+
+  where \(d\): Distance (in meters), \(f\): Frequency (in Hz).
 
 ### **1.3.2 Rayleigh Fading Model**
 - **Description**:
