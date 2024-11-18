@@ -1,13 +1,13 @@
-# Wireless Communication Algorithms
+# Wireless Communication Documentation
 
-Welcome to the **Wireless Communication Algorithms** documentation! This resource is designed to provide a comprehensive and accessible guide to key concepts, algorithms, and techniques in wireless communications. Whether you are a student, researcher, or engineer, this documentation serves as a reference for both foundational and advanced topics in the field.
+Welcome to the **Wireless Communication** documentation! This resource is designed to provide a comprehensive and accessible guide to key concepts, algorithms, and techniques in wireless communications.
 
 ## Purpose
 The primary goal of this documentation is to:
+
 - **Share knowledge** about wireless communication principles and algorithms.
 - Provide **step-by-step explanations** of key concepts like MMSE, ZF, and NOMA.
 - Enable practical understanding through **Python/Matlab examples**.
-- Serve as a **reference** for academic and industrial applications.
 
 ## Topics Covered
 This documentation is organized into the following sections:
@@ -50,7 +50,7 @@ This documentation is organized into the following sections:
 3. Run the provided Python/Matlab examples to deepen your understanding.
 
 ## Contribution
-This documentation is a living resource. Feedback and contributions are welcome to help improve its content. If you have suggestions or would like to contribute, please visit our [GitHub repository](https://github.com/<your-username>/wireless-docs).
+This documentation is a living resource. Feedback and contributions are welcome to help improve its content. If you have suggestions or would like to contribute, please visit our [GitHub repository](https://github.com/boyin8/wireless-docs).
 
 ---
 
