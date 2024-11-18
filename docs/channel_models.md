@@ -146,127 +146,182 @@ Wireless channels are commonly classified based on their characteristics:
 ## **1.4 Python Simulation**
 The following Python code demonstrates the simulation of common channel models.
 
-### **Rayleigh Fading Simulation**
+### **Large-scale Path Loss Simulation**
 ``` py
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Rayleigh fading simulation
-def rayleigh_fading(num_samples):
-    x1 = np.random.normal(0, 1, num_samples)
-    x2 = np.random.normal(0, 1, num_samples)
-    return np.sqrt(x1**2 + x2**2)
 
-# Generate samples
-num_samples = 10000
-samples = rayleigh_fading(num_samples)
+def free_space_path_loss(fc, dist, Gt=1, Gr=1):
+    """
+    Computes the free-space path loss (FSPL).
 
-# Plot histogram
-plt.hist(samples, bins=50, density=True, alpha=0.7, color='blue', edgecolor='black')
-plt.title("Rayleigh Fading Amplitude Distribution")
-plt.xlabel("Amplitude")
-plt.ylabel("Probability Density")
-plt.grid(True)
-plt.show()
+    Args:
+        fc (float): Carrier frequency in Hz.
+        dist (float or ndarray): Distance between base station and mobile station in meters.
+        Gt (float, optional): Transmitter gain. Defaults to 1.
+        Gr (float, optional): Receiver gain. Defaults to 1.
+
+    Returns:
+        float or ndarray: Path loss in dB.
+    """
+    lamda = 3e8 / fc  # Wavelength in meters
+    tmp = lamda / (4 * np.pi * dist)  # Free-space propagation factor
+    if Gt > 0:
+        tmp *= np.sqrt(Gt)
+    if Gr > 0:
+        tmp *= np.sqrt(Gr)
+    PL = -20 * np.log10(tmp)  # Convert to dB
+    return PL
+
+
+def log_distance_or_shadowing_path_loss(fc, d, d0, n, sigma=0):
+    """
+    Computes the log-distance or log-normal shadowing path loss.
+
+    Args:
+        fc (float): Carrier frequency in Hz.
+        d (float or ndarray): Distance between base station and mobile station in meters.
+        d0 (float): Reference distance in meters.
+        n (float): Path loss exponent.
+        sigma (float, optional): Standard deviation for shadowing in dB. Defaults to 0.
+
+    Returns:
+        float or ndarray: Path loss in dB.
+    """
+    lamda = 3e8 / fc  # Wavelength in meters
+    PL = -20 * np.log10(lamda / (4 * np.pi * d0)) + 10 * n * np.log10(d / d0)  # Log-distance model
+    if sigma > 0:
+        PL += sigma * np.random.randn(*np.shape(d))  # Add shadowing
+    return PL
+
+
+def simulate_path_loss():
+    """
+    Simulates and plots path loss for free-space, log-distance, and log-normal shadowing models.
+    """
+    fc = 1.5e9  # Carrier frequency in Hz
+    d0 = 100  # Reference distance in meters
+    sigma = 3  # Shadowing standard deviation in dB
+    distance = np.array([i**2 for i in range(1, 32, 2)])  # Quadratic distance scale
+    Gt = [1, 1, 0.5]  # Transmitter gain values
+    Gr = [1, 0.5, 0.5]  # Receiver gain values
+    Exp = [2, 3, 6]  # Path loss exponents
+
+    # Compute path loss for each model
+    y_Free = np.array([free_space_path_loss(fc, distance, Gt[i], Gr[i]) for i in range(3)])
+    y_logdist = np.array([log_distance_or_shadowing_path_loss(fc, distance, d0, Exp[i]) for i in range(3)])
+    y_lognorm = np.array([log_distance_or_shadowing_path_loss(fc, distance, d0, Exp[0], sigma) for _ in range(3)])
+
+    # Plot Free Space Path Loss
+    plt.subplot(131)
+    for i in range(3):
+        plt.semilogx(distance, y_Free[i], label=f"Gt={Gt[i]}, Gr={Gr[i]}")
+    plt.grid(True)
+    plt.title(f"Free Space Path Loss, fc={fc/1e6:.1f} MHz")
+    plt.xlabel("Distance [m]")
+    plt.ylabel("Path Loss [dB]")
+    plt.legend()
+
+    # Plot Log-Distance Path Loss
+    plt.subplot(132)
+    for i in range(3):
+        plt.semilogx(distance, y_logdist[i], label=f"n={Exp[i]}")
+    plt.grid(True)
+    plt.title(f"Log-Distance Path Loss, fc={fc/1e6:.1f} MHz")
+    plt.xlabel("Distance [m]")
+    plt.ylabel("Path Loss [dB]")
+    plt.legend()
+
+    # Plot Log-Normal Shadowing Path Loss
+    plt.subplot(133)
+    for i in range(3):
+        plt.semilogx(distance, y_lognorm[i], label=f"path {i+1}")
+    plt.grid(True)
+    plt.title(f"Log-Normal Path Loss, fc={fc/1e6:.1f} MHz, σ={sigma} dB")
+    plt.xlabel("Distance [m]")
+    plt.ylabel("Path Loss [dB]")
+    plt.legend()
+
+    plt.tight_layout()
+    plt.show()
+
+
+if __name__ == "__main__":
+    simulate_path_loss()
 ```
 
-### **Free-Space Path Loss Simulation**
+### **Small-scale Fading Simulation**
 ``` py
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Free-space path loss model
-def free_space_path_loss(d, f):
-    c = 3e8  # Speed of light (m/s)
-    return 20 * np.log10(d) + 20 * np.log10(f) - 20 * np.log10(c / (4 * np.pi))
 
-# Parameters
-distance = np.linspace(1, 1000, 500)  # Distance in meters
-frequency = 2.4e9  # Frequency in Hz (2.4 GHz)
-
-# Calculate path loss
-path_loss = free_space_path_loss(distance, frequency)
-
-# Plot path loss
-plt.plot(distance, path_loss, label=f"{frequency/1e9} GHz")
-plt.title("Free-Space Path Loss")
-plt.xlabel("Distance (m)")
-plt.ylabel("Path Loss (dB)")
-plt.grid(True)
-plt.legend()
-plt.show()
-```
-
-### **Rician Fading Simulation**
-```py
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.special import iv  # Modified Bessel function of the first kind
-
-# Rician PDF function
-def rician_pdf(r, A, sigma):
+def rayleigh_channel(L):
     """
-    Compute the Rician PDF for a given amplitude r.
+    Generates Rayleigh fading channel realizations.
 
-    Parameters:
-    r: Amplitude (array-like or scalar)
-    A: LOS path amplitude (scalar)
-    sigma: Standard deviation of NLOS paths (scalar)
+    Args:
+        L (int): Number of channel realizations.
 
     Returns:
-    PDF value(s) for the input amplitude r.
+        ndarray: Rayleigh fading channel vector of size (L,).
     """
-    r = np.asarray(r)
-    bessel_term = iv(0, (A * r) / (sigma**2))  # Modified Bessel function of the first kind
-    pdf = (r / (sigma**2)) * np.exp(-(r**2 + A**2) / (2 * sigma**2)) * bessel_term
-    return pdf
+    real_part = np.random.normal(0, 1, L)  # Real part of the channel
+    imag_part = np.random.normal(0, 1, L)  # Imaginary part of the channel
+    H = (real_part + 1j * imag_part) / np.sqrt(2)  # Normalize
+    return H
 
-# Generate Rician samples
-def generate_rician_samples(num_samples, A, sigma):
+
+def rician_channel(K_dB, L):
     """
-    Generate random samples from a Rician distribution.
+    Generates Rician fading channel realizations.
 
-    Parameters:
-    num_samples: Number of samples to generate
-    A: LOS path amplitude (scalar)
-    sigma: Standard deviation of NLOS paths (scalar)
+    Args:
+        K_dB (float): Rician K-factor in dB.
+        L (int): Number of channel realizations.
 
     Returns:
-    Rician distributed random samples.
+        ndarray: Rician fading channel vector of size (L,).
     """
-    # Generate LOS (direct path) and NLOS (scattered path) components
-    los_component = A + np.random.normal(0, sigma, num_samples)
-    nlos_component = np.random.normal(0, sigma, num_samples)
+    K = 10 ** (K_dB / 10)  # Convert K-factor from dB to linear scale
+    rayleigh = rayleigh_channel(L)  # Rayleigh component
+    los_component = np.sqrt(K / (K + 1))  # Line-of-sight (LOS) component
+    scattered_component = np.sqrt(1 / (K + 1)) * rayleigh  # Scattered component
+    H = los_component + scattered_component
+    return H
 
-    # Combine components to form Rician distributed samples
-    samples = np.sqrt(los_component**2 + nlos_component**2)
-    return samples
 
-# Parameters
-A = 5          # Amplitude of LOS path
-sigma = 2      # Standard deviation of NLOS components
-num_samples = 10000  # Number of samples
+def plot_fading_channels():
+    """
+    Simulates and plots the amplitude distribution of Rayleigh and Rician fading channels.
+    """
+    N = 200000  # Number of channel realizations
+    level = 30  # Number of histogram bins
+    K_dB = [-40, 15]  # Rician K-factors in dB
 
-# Generate Rician distributed samples
-samples = generate_rician_samples(num_samples, A, sigma)
+    # Generate Rayleigh fading channel
+    rayleigh_ch = rayleigh_channel(N)
+    temp, x = np.histogram(np.abs(rayleigh_ch), bins=level, density=True)
+    plt.plot(x[:-1], temp, 'k-s', label='Rayleigh')
 
-# Compute Rician PDF for visualization
-r = np.linspace(0, 15, 1000)  # Amplitude range
-pdf = rician_pdf(r, A, sigma)
+    # Generate Rician fading channels
+    for i, k in enumerate(K_dB):
+        rician_ch = rician_channel(k, N)
+        temp, x = np.histogram(np.abs(rician_ch), bins=level, density=True)
+        plt.plot(x[:-1], temp, 'k-o' if i == 0 else 'k-^', label=f'Rician, K={k} dB')
 
-# Plot the histogram of generated samples
-plt.hist(samples, bins=50, density=True, alpha=0.6, color='blue', edgecolor='black', label="Generated Samples")
+    # Plot customization
+    plt.xlabel('Amplitude')
+    plt.ylabel('Occurrence')
+    plt.legend()
+    plt.grid(True)
+    plt.title('Amplitude Distribution of Fading Channels')
+    plt.show()
 
-# Overlay the theoretical PDF
-plt.plot(r, pdf, 'r-', linewidth=2, label="Theoretical PDF")
 
-# Plot customization
-plt.title("Rician Distribution (A = 5, σ = 2)")
-plt.xlabel("Amplitude")
-plt.ylabel("Probability Density")
-plt.legend()
-plt.grid(True)
-plt.show()
+if __name__ == "__main__":
+    plot_fading_channels()
 ```
 
 ---
