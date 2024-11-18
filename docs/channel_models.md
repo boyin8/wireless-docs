@@ -96,9 +96,11 @@ Wireless channels are commonly classified based on their characteristics:
 
       - Assumes no dominant LOS path.
       - Signal amplitude follows a Rayleigh distribution.
+
 - **Applications**:
 
       - Urban environments with dense scatterers.
+
 - **Probability Density Function (PDF)**:
 
   $$
@@ -110,9 +112,11 @@ Wireless channels are commonly classified based on their characteristics:
 
       - Incorporates both LOS and scattered components.
       - Signal amplitude follows a Rician distribution.
+
 - **Applications**:
 
       - Environments with a strong LOS component (e.g., highways, rural areas).
+
 - **PDF**:
   $$
   f_R(r) = \frac{r}{\sigma^2} e^{-(r^2 + A^2) / (2\sigma^2)} I_0\left(\frac{Ar}{\sigma^2}\right), \quad r \geq 0
@@ -186,6 +190,78 @@ plt.xlabel("Distance (m)")
 plt.ylabel("Path Loss (dB)")
 plt.grid(True)
 plt.legend()
+plt.show()
+```
+
+### **Rician Fading Simulation**
+```py
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.special import iv  # Modified Bessel function of the first kind
+
+# Rician PDF function
+def rician_pdf(r, A, sigma):
+    """
+    Compute the Rician PDF for a given amplitude r.
+
+    Parameters:
+    r: Amplitude (array-like or scalar)
+    A: LOS path amplitude (scalar)
+    sigma: Standard deviation of NLOS paths (scalar)
+
+    Returns:
+    PDF value(s) for the input amplitude r.
+    """
+    r = np.asarray(r)
+    bessel_term = iv(0, (A * r) / (sigma**2))  # Modified Bessel function of the first kind
+    pdf = (r / (sigma**2)) * np.exp(-(r**2 + A**2) / (2 * sigma**2)) * bessel_term
+    return pdf
+
+# Generate Rician samples
+def generate_rician_samples(num_samples, A, sigma):
+    """
+    Generate random samples from a Rician distribution.
+
+    Parameters:
+    num_samples: Number of samples to generate
+    A: LOS path amplitude (scalar)
+    sigma: Standard deviation of NLOS paths (scalar)
+
+    Returns:
+    Rician distributed random samples.
+    """
+    # Generate LOS (direct path) and NLOS (scattered path) components
+    los_component = A + np.random.normal(0, sigma, num_samples)
+    nlos_component = np.random.normal(0, sigma, num_samples)
+
+    # Combine components to form Rician distributed samples
+    samples = np.sqrt(los_component**2 + nlos_component**2)
+    return samples
+
+# Parameters
+A = 5          # Amplitude of LOS path
+sigma = 2      # Standard deviation of NLOS components
+num_samples = 10000  # Number of samples
+
+# Generate Rician distributed samples
+samples = generate_rician_samples(num_samples, A, sigma)
+
+# Compute Rician PDF for visualization
+r = np.linspace(0, 15, 1000)  # Amplitude range
+pdf = rician_pdf(r, A, sigma)
+
+# Plot the histogram of generated samples
+plt.hist(samples, bins=50, density=True, alpha=0.6, color='blue', edgecolor='black', label="Generated Samples")
+
+# Overlay the theoretical PDF
+plt.plot(r, pdf, 'r-', linewidth=2, label="Theoretical PDF")
+
+# Plot customization
+plt.title("Rician Distribution (A = 5, σ = 2)")
+plt.xlabel("Amplitude")
+plt.ylabel("Probability Density")
+plt.legend()
+plt.grid(True)
 plt.show()
 ```
 
