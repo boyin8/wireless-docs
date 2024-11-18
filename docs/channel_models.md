@@ -11,16 +11,16 @@ Wireless channels exhibit unique characteristics due to the interaction between 
 - **Definition**: Signals from a transmitter reach the receiver via multiple paths caused by reflection, diffraction, and scattering.
 - **Impacts**:
 
-    - Constructive or destructive interference: Leads to signal fading.
-    - Delay spread: Causes inter-symbol interference (ISI).
-    - Frequency selectivity: Variations in channel gain across different frequencies.
+    - **Constructive or destructive interference**: Leads to signal fading.
+    - **Delay spread**: Causes inter-symbol interference (ISI).
+    - **Frequency selectivity**: Variations in channel gain across different frequencies.
 
 ### **1.1.2 Doppler Effect**
 - **Definition**: Frequency shift caused by the relative motion between transmitter and receiver.
 - **Impacts**:
-
-  - **Doppler spread**: Results in time-selective fading.
-  - **Coherence time**: Defines how long the channel remains static.
+    
+    - **Doppler spread**: Results in time-selective fading.
+    - **Coherence time**: Defines how long the channel remains static.
 
 ### **1.1.3 Shadowing**
 - **Definition**: Signal attenuation caused by large obstacles (e.g., buildings, mountains).
@@ -32,8 +32,9 @@ Wireless channels exhibit unique characteristics due to the interaction between 
 - **Definition**: Reduction in signal power as it propagates through space.
 
 - **Impacts**:
-  - Determines the communication range.
-  - Dominates over large distances.
+  
+      - Determines the communication range.
+      - Dominates over large distances.
 
 ---
 
@@ -43,33 +44,33 @@ Wireless channels are commonly classified based on their characteristics:
 ### **1.2.1 Classification by Fading**
 1. **Flat Fading**:
 
-   - All frequency components of the signal experience the same fading.
-   - Occurs when the channel bandwidth is much larger than the signal bandwidth.
+       - All frequency components of the signal experience the same fading.
+       - Occurs when the channel bandwidth is much larger than the signal bandwidth.
 2. **Frequency-Selective Fading**:
 
-   - Different frequency components experience different fading.
-   - Caused by multipath propagation with delay spread larger than the signal's symbol duration.
+       - Different frequency components experience different fading.
+       - Caused by multipath propagation with delay spread larger than the signal's symbol duration.
 
 ### **1.2.2 Classification by Time Variability**
 1. **Fast Fading**:
 
-    - Channel changes rapidly within the symbol duration.
-   - Caused by high mobility or large Doppler spread.
+        - Channel changes rapidly within the symbol duration.
+        - Caused by high mobility or large Doppler spread.
 2. **Slow Fading**:
 
-    - Channel remains constant over several symbol durations.
-   - Results from slow environmental changes.
+        - Channel remains constant over several symbol durations.
+        - Results from slow environmental changes.
 
 ### **1.2.3 Classification by LOS/NLOS**
 1. **Line-of-Sight (LOS)**:
 
-    - Direct path exists between transmitter and receiver.
-   - Typically observed in free-space or rural environments.
+        - Direct path exists between transmitter and receiver.
+        - Typically observed in free-space or rural environments.
 
 2. **Non-Line-of-Sight (NLOS)**:
 
-   - No direct path due to obstructions.
-   - Common in urban and indoor environments.
+       - No direct path due to obstructions.
+       - Common in urban and indoor environments.
 
 ---
 
@@ -92,6 +93,7 @@ Wireless channels are commonly classified based on their characteristics:
 - **Applications**:
   - Urban environments with dense scatterers.
 - **Probability Density Function (PDF)**:
+
   \[
   f_R(r) = \frac{r}{\sigma^2} e^{-r^2 / (2\sigma^2)}, \quad r \geq 0
   \]
