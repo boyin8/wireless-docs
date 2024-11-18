@@ -10,6 +10,7 @@ Wireless channels exhibit unique characteristics due to the interaction between 
 ### **1.1.1 Multipath Propagation**
 - **Definition**: Signals from a transmitter reach the receiver via multiple paths caused by reflection, diffraction, and scattering.
 - **Impacts**:
+
   - **Constructive or destructive interference**: Leads to signal fading.
   - **Delay spread**: Causes inter-symbol interference (ISI).
   - **Frequency selectivity**: Variations in channel gain across different frequencies.
@@ -17,16 +18,19 @@ Wireless channels exhibit unique characteristics due to the interaction between 
 ### **1.1.2 Doppler Effect**
 - **Definition**: Frequency shift caused by the relative motion between transmitter and receiver.
 - **Impacts**:
+
   - **Doppler spread**: Results in time-selective fading.
   - **Coherence time**: Defines how long the channel remains static.
 
 ### **1.1.3 Shadowing**
 - **Definition**: Signal attenuation caused by large obstacles (e.g., buildings, mountains).
 - **Modeling**:
+
   - Typically modeled as a log-normal distribution over distance.
 
 ### **1.1.4 Path Loss**
 - **Definition**: Reduction in signal power as it propagates through space.
+
 - **Impacts**:
   - Determines the communication range.
   - Dominates over large distances.
@@ -38,25 +42,32 @@ Wireless channels are commonly classified based on their characteristics:
 
 ### **1.2.1 Classification by Fading**
 1. **Flat Fading**:
+
    - All frequency components of the signal experience the same fading.
    - Occurs when the channel bandwidth is much larger than the signal bandwidth.
 2. **Frequency-Selective Fading**:
+
    - Different frequency components experience different fading.
    - Caused by multipath propagation with delay spread larger than the signal's symbol duration.
 
 ### **1.2.2 Classification by Time Variability**
 1. **Fast Fading**:
-   - Channel changes rapidly within the symbol duration.
+
+    - Channel changes rapidly within the symbol duration.
    - Caused by high mobility or large Doppler spread.
 2. **Slow Fading**:
-   - Channel remains constant over several symbol durations.
+
+    - Channel remains constant over several symbol durations.
    - Results from slow environmental changes.
 
 ### **1.2.3 Classification by LOS/NLOS**
 1. **Line-of-Sight (LOS)**:
-   - Direct path exists between transmitter and receiver.
+
+    - Direct path exists between transmitter and receiver.
    - Typically observed in free-space or rural environments.
+
 2. **Non-Line-of-Sight (NLOS)**:
+
    - No direct path due to obstructions.
    - Common in urban and indoor environments.
 
@@ -165,6 +176,7 @@ plt.legend()
 plt.show()
 ```
 
-## **1.5 Conclusion**
+---
 
+## **1.5 Conclusion**
 Wireless channel modeling is a critical step in understanding and designing robust communication systems. From basic free-space models to advanced fading and shadowing models, these tools enable accurate performance analysis and system optimization. Through simulation, engineers can gain insights into real-world channel behaviors and test algorithms under realistic conditions.
