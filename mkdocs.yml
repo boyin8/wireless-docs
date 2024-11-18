@@ -32,6 +32,15 @@ theme:
     - search.suggest
 
 markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
   - pymdownx.arithmatex:
       generic: true
 
