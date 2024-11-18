@@ -7,34 +7,38 @@ Wireless communication channels are inherently unpredictable and vary across tim
 ## **1.1 Wireless Channel Characteristics**
 Wireless channels exhibit unique characteristics due to the interaction between transmitted signals and the surrounding environment. The primary factors affecting wireless channels are:
 
-### **1.1.1 Multipath Propagation**
-- **Definition**: Signals from a transmitter reach the receiver via multiple paths caused by reflection, diffraction, and scattering.
-- **Impacts**:
-
-    - **Constructive or destructive interference**: Leads to signal fading.
-    - **Delay spread**: Causes inter-symbol interference (ISI).
-    - **Frequency selectivity**: Variations in channel gain across different frequencies.
-
-### **1.1.2 Doppler Effect**
-- **Definition**: Frequency shift caused by the relative motion between transmitter and receiver.
-- **Impacts**:
+!!! note "small-scale fading"
     
-    - **Doppler spread**: Results in time-selective fading.
-    - **Coherence time**: Defines how long the channel remains static.
+    ### **1.1.1 Multipath Propagation**
+    - **Definition**: Signals from a transmitter reach the receiver via multiple paths caused by reflection, diffraction, and scattering.
+    - **Impacts**:
+    
+        - **Constructive or destructive interference**: Leads to signal fading.
+        - **Delay spread**: Causes inter-symbol interference (ISI).
+        - **Frequency selectivity**: Variations in channel gain across different frequencies.
+    
+    ### **1.1.2 Doppler Effect**
+    - **Definition**: Frequency shift caused by the relative motion between transmitter and receiver.
+    - **Impacts**:
+        
+        - **Doppler spread**: Results in time-selective fading.
+        - **Coherence time**: Defines how long the channel remains static.
 
-### **1.1.3 Shadowing**
-- **Definition**: Signal attenuation caused by large obstacles (e.g., buildings, mountains).
-- **Modeling**:
-
-      - Typically modeled as a log-normal distribution over distance.
-
-### **1.1.4 Path Loss**
-- **Definition**: Reduction in signal power as it propagates through space.
-
-- **Impacts**:
-  
-      - Determines the communication range.
-      - Dominates over large distances.
+!!! note "large-scale fading"
+    
+    ### **1.1.3 Shadowing**
+    - **Definition**: Signal attenuation caused by large obstacles (e.g., buildings, mountains).
+    - **Modeling**:
+    
+          - Typically modeled as a log-normal distribution over distance.
+    
+    ### **1.1.4 Path Loss**
+    - **Definition**: Reduction in signal power as it propagates through space.
+    
+    - **Impacts**:
+      
+          - Determines the communication range.
+          - Dominates over large distances.
 
 ---
 
@@ -140,7 +144,7 @@ Wireless channels are commonly classified based on their characteristics:
 ---
 
 ## **1.4 Python Simulation**
-The following Python code demonstrates the simulation of Rayleigh fading and the Free-Space Path Loss Model.
+The following Python code demonstrates the simulation of common channel models.
 
 ### **Rayleigh Fading Simulation**
 ``` py
