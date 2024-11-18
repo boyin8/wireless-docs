@@ -80,8 +80,8 @@ Wireless channels are commonly classified based on their characteristics:
 ### **1.3.1 Free-Space Path Loss Model**
 - **Description**:
 
-        - Idealized model for LOS communication.
-        - Path loss is proportional to the square of the distance.
+      - Idealized model for LOS communication.
+      - Path loss is proportional to the square of the distance.
 
 - **Path Loss Formula**:
 
@@ -89,14 +89,16 @@ Wireless channels are commonly classified based on their characteristics:
   PL(d) = 20 \log_{10}(d) + 20 \log_{10}(f) - 147.55 \quad (\text{dB})
   $$
 
-  where \(d\): Distance (in meters), and \(f\): Frequency (in Hz).
+  where \(d\) denotes distance (in meters), and \(f\) denotes frequency (in Hz).
 
 ### **1.3.2 Rayleigh Fading Model**
 - **Description**:
-        - Assumes no dominant LOS path.
-        - Signal amplitude follows a Rayleigh distribution.
+
+      - Assumes no dominant LOS path.
+      - Signal amplitude follows a Rayleigh distribution.
 - **Applications**:
-        - Urban environments with dense scatterers.
+
+      - Urban environments with dense scatterers.
 - **Probability Density Function (PDF)**:
 
   $$
@@ -115,20 +117,21 @@ Wireless channels are commonly classified based on their characteristics:
   $$
   f_R(r) = \frac{r}{\sigma^2} e^{-(r^2 + A^2) / (2\sigma^2)} I_0\left(\frac{Ar}{\sigma^2}\right), \quad r \geq 0
   $$
-  - \(A\): Amplitude of the LOS component.
-  - \(I_0\): Modified Bessel function of the first kind.
+
+  where \(A\) denotes amplitude of the LOS component, and \(I_0\) denotes modified Bessel function of the first kind.
 
 ### **1.3.4 Log-Normal Shadowing Model**
 - **Description**:
 
       - Models large-scale signal variations due to shadowing.
       - Shadowing effects are modeled as a Gaussian random variable in dB scale.
+
 - **Path Loss with Shadowing**:
   $$
   PL(d) = PL_0 + 10\beta \log_{10}(d/d_0) + X_\sigma
   $$
-  - \(PL_0\): Path loss at reference distance \(d_0\).
-  - \(X_\sigma\): Zero-mean Gaussian random variable with standard deviation \(\sigma\).
+  
+  where \(PL_0\) denotes path loss at reference distance \(d_0\), and \(X_\sigma\) denotes zero-mean Gaussian random variable with standard deviation \(\sigma\).
 
 ---
 
