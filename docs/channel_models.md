@@ -11,9 +11,9 @@ Wireless channels exhibit unique characteristics due to the interaction between 
 - **Definition**: Signals from a transmitter reach the receiver via multiple paths caused by reflection, diffraction, and scattering.
 - **Impacts**:
 
-  - Constructive or destructive interference: Leads to signal fading.
-  - Delay spread: Causes inter-symbol interference (ISI).
-  - Frequency selectivity: Variations in channel gain across different frequencies.
+    - Constructive or destructive interference: Leads to signal fading.
+    - Delay spread: Causes inter-symbol interference (ISI).
+    - Frequency selectivity: Variations in channel gain across different frequencies.
 
 ### **1.1.2 Doppler Effect**
 - **Definition**: Frequency shift caused by the relative motion between transmitter and receiver.
