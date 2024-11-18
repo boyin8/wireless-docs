@@ -9,6 +9,7 @@ copyright: Copyright &copy; 2024 ~ now | Bo Yin
 
 nav:
   - Home: index.md
+  - Wireless Channel Models: channel_models.md
 
 theme:
   name: material
