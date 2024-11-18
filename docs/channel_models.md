@@ -55,19 +55,19 @@ Wireless channels are commonly classified based on their characteristics:
 ### **1.2.2 Classification by Time Variability**
 1. **Fast Fading**:
 
-        - Channel changes rapidly within the symbol duration.
-        - Caused by high mobility or large Doppler spread.
+       - Channel changes rapidly within the symbol duration.
+       - Caused by high mobility or large Doppler spread.
 
 2. **Slow Fading**:
 
-        - Channel remains constant over several symbol durations.
-        - Results from slow environmental changes.
+       - Channel remains constant over several symbol durations.
+       - Results from slow environmental changes.
 
 ### **1.2.3 Classification by LOS/NLOS**
 1. **Line-of-Sight (LOS)**:
 
-        - Direct path exists between transmitter and receiver.
-        - Typically observed in free-space or rural environments.
+       - Direct path exists between transmitter and receiver.
+       - Typically observed in free-space or rural environments.
 
 2. **Non-Line-of-Sight (NLOS)**:
 
@@ -79,9 +79,9 @@ Wireless channels are commonly classified based on their characteristics:
 ## **1.3 Common Channel Models**
 ### **1.3.1 Free-Space Path Loss Model**
 - **Description**:
-- 
-      - Idealized model for LOS communication.
-      - Path loss is proportional to the square of the distance.
+
+        - Idealized model for LOS communication.
+        - Path loss is proportional to the square of the distance.
 
 - **Path Loss Formula**:
 
@@ -89,41 +89,44 @@ Wireless channels are commonly classified based on their characteristics:
   PL(d) = 20 \log_{10}(d) + 20 \log_{10}(f) - 147.55 \quad (\text{dB})
   $$
 
-  where \(d\): Distance (in meters), \(f\): Frequency (in Hz).
+  where \(d\): Distance (in meters), and \(f\): Frequency (in Hz).
 
 ### **1.3.2 Rayleigh Fading Model**
 - **Description**:
-  - Assumes no dominant LOS path.
-  - Signal amplitude follows a Rayleigh distribution.
+        - Assumes no dominant LOS path.
+        - Signal amplitude follows a Rayleigh distribution.
 - **Applications**:
-  - Urban environments with dense scatterers.
+        - Urban environments with dense scatterers.
 - **Probability Density Function (PDF)**:
 
-  \[
+  $$
   f_R(r) = \frac{r}{\sigma^2} e^{-r^2 / (2\sigma^2)}, \quad r \geq 0
-  \]
+  $$
 
 ### **1.3.3 Rician Fading Model**
 - **Description**:
-  - Incorporates both LOS and scattered components.
-  - Signal amplitude follows a Rician distribution.
+
+      - Incorporates both LOS and scattered components.
+      - Signal amplitude follows a Rician distribution.
 - **Applications**:
-  - Environments with a strong LOS component (e.g., highways, rural areas).
+
+      - Environments with a strong LOS component (e.g., highways, rural areas).
 - **PDF**:
-  \[
+  $$
   f_R(r) = \frac{r}{\sigma^2} e^{-(r^2 + A^2) / (2\sigma^2)} I_0\left(\frac{Ar}{\sigma^2}\right), \quad r \geq 0
-  \]
+  $$
   - \(A\): Amplitude of the LOS component.
   - \(I_0\): Modified Bessel function of the first kind.
 
 ### **1.3.4 Log-Normal Shadowing Model**
 - **Description**:
-  - Models large-scale signal variations due to shadowing.
-  - Shadowing effects are modeled as a Gaussian random variable in dB scale.
+
+      - Models large-scale signal variations due to shadowing.
+      - Shadowing effects are modeled as a Gaussian random variable in dB scale.
 - **Path Loss with Shadowing**:
-  \[
+  $$
   PL(d) = PL_0 + 10\beta \log_{10}(d/d_0) + X_\sigma
-  \]
+  $$
   - \(PL_0\): Path loss at reference distance \(d_0\).
   - \(X_\sigma\): Zero-mean Gaussian random variable with standard deviation \(\sigma\).
 
