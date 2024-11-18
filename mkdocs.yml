@@ -1,0 +1,56 @@
+site_name: Wireless Communication Notes
+site_url: https://boyin8.github.io/wireless-docs
+site_author: Bo Yin
+site_description: This is technical notes site for wireless communication.
+repo_name: boyin8/wireless-docs
+repo_url: https://github.com/boyin8/wireless-docs
+
+copyright: Copyright &copy; 2024 ~ now | Bo Yin
+
+nav:
+  - Home: index.md
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+  features:
+    - header.autohide
+    - navigation.instant
+    - navigation.tracking
+    - content.code.annotate
+    - toc.integrate
+    - toc.follow
+    - navigation.path
+    - navigation.top
+    - navigation.tabs
+    - navigation.prune
+    - navigation.footer
+    - navigation.sections
+    - navigation.expand
+    - content.code.copy
+    - navigation.indexes
+    - search.share
+    - search.suggest
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+      
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
