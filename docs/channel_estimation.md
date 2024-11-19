@@ -49,7 +49,7 @@ Channel estimation methods can be broadly categorized based on the availability 
          - Formula:
 
            $$
-             \hat{H}_{MMSE} = R_H (R_H + \sigma^2 I)^{-1} \hat{H}_{LS},
+           \hat{H}_{MMSE} = R_H (R_H + \sigma^2 I)^{-1} \hat{H}_{LS},
            $$
 
            where \(R_H\) is the channel covariance matrix and \(\sigma^2\) is noise variance.
