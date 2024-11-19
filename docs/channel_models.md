@@ -90,7 +90,7 @@ Wireless channels are commonly classified based on their characteristics:
 - **Path Loss Formula**:
 
   $$
-  PL(d) = 20 \log_{10}(d) + 20 \log_{10}(f) + 20 \log_{10}(\frac{4\pi}{c}) \quad (\text{dB})
+  PL(d) = 20 \log_{10}(d) + 20 \log_{10}(f) + 20 \log_{10}(\frac{4\pi}{c}) \quad (\text{dB}),
   $$
 
   where \(d\) denotes distance (in meters), \(f\) denotes frequency (in Hz), and \(c\) denotes the speed of light (in m/s).
@@ -108,7 +108,7 @@ Wireless channels are commonly classified based on their characteristics:
 - **Probability Density Function (PDF)**:
 
   $$
-  f_R(r) = \frac{r}{\sigma^2} e^{-r^2 / (2\sigma^2)}, \quad r \geq 0
+  f_R(r) = \frac{r}{\sigma^2} e^{-r^2 / (2\sigma^2)}, \quad r \geq 0.
   $$
 
 ### **1.3.3 Rician Fading Model**
@@ -123,7 +123,7 @@ Wireless channels are commonly classified based on their characteristics:
 
 - **PDF**:
   $$
-  f_R(r) = \frac{r}{\sigma^2} e^{-(r^2 + A^2) / (2\sigma^2)} I_0\left(\frac{Ar}{\sigma^2}\right), \quad r \geq 0
+  f_R(r) = \frac{r}{\sigma^2} e^{-(r^2 + A^2) / (2\sigma^2)} I_0\left(\frac{Ar}{\sigma^2}\right), \quad r \geq 0,
   $$
 
   where \(A\) denotes amplitude of the LOS component, and \(I_0\) denotes modified Bessel function of the first kind.
@@ -136,7 +136,7 @@ Wireless channels are commonly classified based on their characteristics:
 
 - **Path Loss with Shadowing**:
   $$
-  PL(d) = PL_0 + 10\beta \log_{10}(d/d_0) + X_\sigma
+  PL(d) = PL_0 + 10\beta \log_{10}(d/d_0) + X_\sigma,
   $$
   
   where \(PL_0\) denotes path loss at reference distance \(d_0\), and \(X_\sigma\) denotes zero-mean Gaussian random variable with standard deviation \(\sigma\).
