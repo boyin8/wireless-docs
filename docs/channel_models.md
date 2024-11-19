@@ -329,5 +329,7 @@ if __name__ == "__main__":
 ## **1.5 Conclusion**
 Wireless channel modeling is a critical step in understanding and designing robust communication systems. From basic free-space models to advanced fading and shadowing models, these tools enable accurate performance analysis and system optimization. Through simulation, engineers can gain insights into real-world channel behaviors and test algorithms under realistic conditions.
 
+---
+
 ## **References**
 - Cho, Yong Soo, Jaekwon Kim, Won Y. Yang, and Chung G. Kang. MIMO-OFDM wireless communications with MATLAB. John Wiley & Sons, 2010.
