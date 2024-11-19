@@ -90,7 +90,113 @@ The following Python code demonstrates LS and MMSE-based channel estimation in a
 
 ### **Code Implementation**
 ``` py
+import numpy as np
+from scipy.interpolate import interp1d
 
+def interpolate(H_est, pilot_loc, Nfft, method):
+    """
+    Interpolates the channel estimate over all subcarriers.
+
+    Args:
+        H_est (ndarray): Channel estimate using pilot sequence.
+        pilot_loc (ndarray): Location of pilot sequence.
+        Nfft (int): FFT size.
+        method (str): Interpolation method ('linear' or 'spline').
+
+    Returns:
+        ndarray: Interpolated channel estimate over all subcarriers.
+    """
+    # Extend at the beginning if necessary
+    if pilot_loc[0] > 0:
+        slope_start = (H_est[1] - H_est[0]) / (pilot_loc[1] - pilot_loc[0])
+        extrapolated_start = H_est[0] - slope_start * (pilot_loc[0] - 0)
+        H_est = np.insert(H_est, 0, extrapolated_start)
+        pilot_loc = np.insert(pilot_loc, 0, 0)
+
+    # Extend at the end if necessary
+    if pilot_loc[-1] < Nfft - 1:
+        slope_end = (H_est[-1] - H_est[-2]) / (pilot_loc[-1] - pilot_loc[-2])
+        extrapolated_end = H_est[-1] + slope_end * (Nfft - 1 - pilot_loc[-1])
+        H_est = np.append(H_est, extrapolated_end)
+        pilot_loc = np.append(pilot_loc, Nfft - 1)
+
+    # Interpolate
+    if method.lower() == 'linear':
+        interp_fn = interp1d(pilot_loc, H_est, kind='linear', fill_value="extrapolate")
+    else:
+        interp_fn = interp1d(pilot_loc, H_est, kind='cubic', fill_value="extrapolate")
+
+    return interp_fn(np.arange(Nfft))
+
+
+def ls_channel_estimation(Y, Xp, pilot_loc, Nfft, Nps, int_opt):
+    """
+    LS channel estimation function.
+
+    Args:
+        Y (ndarray): Frequency-domain received signal.
+        Xp (ndarray): Pilot signal.
+        pilot_loc (ndarray): Pilot locations.
+        Nfft (int): FFT size.
+        Nps (int): Pilot spacing.
+        int_opt (str): Interpolation method ('linear' or 'spline').
+
+    Returns:
+        ndarray: LS channel estimate.
+    """
+    Np = Nfft // Nps  # Number of pilots
+    LS_est = Y[pilot_loc] / Xp  # LS channel estimation
+    H_LS = interpolate(LS_est, pilot_loc, Nfft, int_opt)  # Interpolation
+
+    return H_LS
+
+
+def mmse_channel_estimation(Y, Xp, pilot_loc, Nfft, Nps, h, SNR_dB):
+    """
+    MMSE channel estimation function.
+
+    Args:
+        Y (ndarray): Frequency-domain received signal.
+        Xp (ndarray): Pilot signal.
+        pilot_loc (ndarray): Pilot locations.
+        Nfft (int): FFT size.
+        Nps (int): Pilot spacing.
+        h (ndarray): Channel impulse response.
+        SNR_dB (float): Signal-to-Noise Ratio in dB.
+
+    Returns:
+        ndarray: MMSE channel estimate.
+    """
+    snr = 10 ** (SNR_dB / 10)  # Convert SNR to linear scale
+    Np = Nfft // Nps  # Number of pilots
+    H_tilde = Y[pilot_loc] / Xp  # LS estimate
+
+    # Compute RMS delay spread from channel impulse response
+    k = np.arange(len(h))
+    hh = np.sum(h * np.conj(h))
+    tmp = h * np.conj(h) * k
+    r = np.sum(tmp) / hh
+    r2 = np.sum(tmp * k) / hh
+    tau_rms = np.sqrt(r2 - r**2)
+
+    # Frequency-domain correlation
+    df = 1 / Nfft  # Subcarrier spacing
+    j2pi_tau_df = 1j * 2 * np.pi * tau_rms * df
+
+    # Correlation matrices
+    K1 = np.tile(np.arange(Nfft).reshape(-1, 1), (1, Np))
+    K2 = np.tile(np.arange(Np), (Nfft, 1))
+    rf = 1 / (1 + j2pi_tau_df * (K1 - K2 * Nps))
+
+    K3 = np.tile(np.arange(Np).reshape(-1, 1), (1, Np))
+    K4 = np.tile(np.arange(Np), (Np, 1))
+    rf2 = 1 / (1 + j2pi_tau_df * Nps * (K3 - K4))
+
+    Rhp = rf
+    Rpp = rf2 + np.eye(Np) / snr
+    H_MMSE = np.matmul(Rhp, np.linalg.inv(Rpp)).dot(H_tilde)
+
+    return H_MMSE
 ```
 
 ---
