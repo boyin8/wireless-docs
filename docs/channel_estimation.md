@@ -64,16 +64,13 @@ Channel estimation methods can be broadly categorized based on the availability 
              where $\hat{\boldsymbol{H}}$ denots the estimation of $\boldsymbol{H}$. Furthermore, we can calculate the mean square error (MSE) of LS method as follows:
 
               $$
-              \begin{equation}
               \begin{aligned}
-              \boldsymbol{R}_{\tilde{\boldsymbol{H}} \tilde{\boldsymbol{H}}} & =E\left\{\tilde{\boldsymbol{H}} \tilde{\boldsymbol{H}}^{\mathrm{H}}\right\} \\
-              & =E\left\{\boldsymbol{X}^{-1} \boldsymbol{Y}\left(\boldsymbol{X}^{-1} \boldsymbol{Y}\right)^{\mathrm{H}}\right\} \\
-              & =E\left\{\left(\boldsymbol{H}+\boldsymbol{X}^{-1} \boldsymbol{Z}\right)\left(\boldsymbol{H}+\boldsymbol{X}^{-1} \boldsymbol{Z}\right)^{\mathrm{H}}\right\} \\
-              & =E\left\{\boldsymbol{H} \boldsymbol{H}^{\mathrm{H}}+\boldsymbol{X}^{-1} \boldsymbol{Z} \boldsymbol{H}^{\mathrm{H}}+\boldsymbol{H} \boldsymbol{Z}^{\mathrm{H}}\left(\boldsymbol{X}^{-1}\right)^{\mathrm{H}}+\boldsymbol{X}^{-1} \boldsymbol{Z} \boldsymbol{Z}^{\mathrm{H}}\left(\boldsymbol{X}^{-1}\right)^{\mathrm{H}}\right\} \\
-              & =E\left\{\boldsymbol{H} \boldsymbol{H}^{\mathrm{H}}\right\}+E\left\{\boldsymbol{X}^{-1} \boldsymbol{Z} \boldsymbol{Z}^{\mathrm{H}}\left(\boldsymbol{X}^{-1}\right)^{\mathrm{H}}\right\} \\
-              & =E\left\{\boldsymbol{H} \boldsymbol{H}^{\mathrm{H}}\right\}+\frac{\sigma_z^2}{\sigma_x^2} \boldsymbol{I}
+              \mathrm{MSE}_{\mathrm{LS}} & =E\left\{\left(\boldsymbol{H}-\hat{\boldsymbol{H}}_{\mathrm{LS}}\right)^{\mathrm{H}}\left(\boldsymbol{H}-\boldsymbol{H}_{\mathrm{LS}}\right)\right\} \\
+              & =E\left\{\left(\boldsymbol{H}-\boldsymbol{X}^{-1} \boldsymbol{Y}\right)^{\mathrm{H}}\left(\boldsymbol{H}-\boldsymbol{X}^{-1} \boldsymbol{r}\right)\right\} \\
+              & =E\left\{\left(\boldsymbol{X}^{-1} \boldsymbol{Z}\right)^{\mathrm{H}}\left(\boldsymbol{X}^{-1} \boldsymbol{Z}\right)\right\} \\
+              & =E\left\{\boldsymbol{Z}^{\mathrm{H}}\left(\boldsymbol{X}^{\mathrm{H}}\right)^{-1} \boldsymbol{Z}\right\} \\
+              & =\frac{\sigma_z^2}{\sigma_x^2}
               \end{aligned}
-              \end{equation}
               $$
 
                where MSE is inversely proportional to the signal-to-noise (SNR) ratio, $\frac{\sigma_x^2}{\sigma_z^2}$. This implies that the lower SNR, the less effective the LS is, because it amplifies the noise.
