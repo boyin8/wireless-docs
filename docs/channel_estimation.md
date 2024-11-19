@@ -41,18 +41,31 @@ Channel estimation methods can be broadly categorized based on the availability 
             \begin{aligned}
             J(\hat{\boldsymbol{H}}) & =\|\boldsymbol{Y}-\boldsymbol{X} \hat{\boldsymbol{H}}\|^2 \\
             & =(\boldsymbol{Y}-\boldsymbol{X} \hat{\boldsymbol{H}})^{\mathrm{H}}(\boldsymbol{Y}-\boldsymbol{X} \hat{\boldsymbol{H}}) \\
-            & =\boldsymbol{Y}^{\mathrm{H}} \boldsymbol{Y}-\boldsymbol{Y}^{\mathrm{H}} \boldsymbol{X} \hat{\boldsymbol{H}}-\hat{\boldsymbol{H}}^{\mathrm{H}} \boldsymbol{X}^{\mathrm{H}} \boldsymbol{Y}+\hat{\boldsymbol{H}}^{\mathrm{H}} \boldsymbol{X}^{\mathrm{H}} \boldsymbol{X} \hat{\boldsymbol{H}}
+            & =\boldsymbol{Y}^{\mathrm{H}} \boldsymbol{Y}-\boldsymbol{Y}^{\mathrm{H}} \boldsymbol{X} \hat{\boldsymbol{H}}-\hat{\boldsymbol{H}}^{\mathrm{H}} \boldsymbol{X}^{\mathrm{H}} \boldsymbol{Y}+\hat{\boldsymbol{H}}^{\mathrm{H}} \boldsymbol{X}^{\mathrm{H}} \boldsymbol{X} \hat{\boldsymbol{H}}.
             \end{aligned}
             $$
+      
+            Let the partial derivative of $J(\hat{\boldsymbol{H}})$ with respect to $\hat{\boldsymbol{H}}$ be equal to 0,
            
+            $$ \frac{\partial J(\hat{\boldsymbol{H}})}{\partial \hat{\boldsymbol{H}}}=-2\left(\boldsymbol{X}^{\mathrm{H}} \boldsymbol{Y}\right)^*+2\left(\boldsymbol{X}^{\mathrm{H}} \boldsymbol{X} \hat{\boldsymbol{H}}\right)^*=0.
+            $$
+      
+            Then, we can get the solution of LS,
            
-            $$ \frac{\partial J(\hat{\boldsymbol{H}})}{\partial \hat{\boldsymbol{H}}}=-2\left(\boldsymbol{X}^{\mathrm{H}} \boldsymbol{Y}\right)^*+2\left(\boldsymbol{X}^{\mathrm{H}} \boldsymbol{X} \hat{\boldsymbol{H}}\right)^*=0 \]
-            and
-           
-             $$\hat{\boldsymbol{H}}_{\mathrm{LS}}=\left(\boldsymbol{X}^{\mathrm{H}} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{\mathrm{H}} \boldsymbol{Y}=\boldsymbol{X}^{-1} \boldsymbol{Y}
+             $$\hat{\boldsymbol{H}}_{\mathrm{LS}}=\left(\boldsymbol{X}^{\mathrm{H}} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{\mathrm{H}} \boldsymbol{Y}=\boldsymbol{X}^{-1} \boldsymbol{Y},
              $$
 
-             where \(Y\) is the received signal, \(X\) is the pilot symbol.
+             where \(Y\) is the received signal, \(X\) is the pilot symbol, and $\hat{\boldsymbol{H}}$ denots the estimation of $\boldsymbol{H}$. Furthermore, we can calculate the as follows:
+
+             $$
+              \begin{aligned}
+              \mathrm{MSE}_{\mathrm{LS}} & =E\left\{\left(\boldsymbol{H}-\hat{\boldsymbol{H}}_{\mathrm{LS}}\right)^{\mathrm{H}}\left(\boldsymbol{H}-\boldsymbol{H}_{\mathrm{LS}}\right)\right\} \\
+              & =E\left\{\left(\boldsymbol{H}-\boldsymbol{X}^{-1} \boldsymbol{Y}\right)^{\mathrm{H}}\left(\boldsymbol{H}-\boldsymbol{X}^{-1} \boldsymbol{Y}\right)\right\} \\
+              & =E\left\{\left(\boldsymbol{X}^{-1} \boldsymbol{Z}\right)^{\mathrm{H}}\left(\boldsymbol{X}^{-1} \boldsymbol{Z}\right)\right\} \\
+              & =E\left\{\boldsymbol{Z}^{\mathrm{H}}\left(\boldsymbol{X} \boldsymbol{X}^{\mathrm{H}}\right)^{-1} \boldsymbol{Z}\right\} \\
+              & =\frac{\sigma_z^2}{\sigma_x^2}
+              \end{aligned}
+              $$
 
     2. **Minimum Mean Square Error (MMSE)**:
        
