@@ -36,19 +36,23 @@ Channel estimation methods can be broadly categorized based on the availability 
 
          - Solves for channel coefficients by minimizing the squared error between received and expected signals.
          - Formula:
-           $$
-           \hat{H}_{LS} = \frac{Y}{X}
-           $$
-           where \(Y\) is the received signal, \(X\) is the pilot symbol.
+
+             $$
+             \hat{H}_{LS} = \frac{Y}{X}
+             $$
+  
+             where \(Y\) is the received signal, \(X\) is the pilot symbol.
 
     2. **Minimum Mean Square Error (MMSE)**:
        
          - Incorporates noise statistics and prior knowledge of the channel.
          - Formula:
-           $$
-           \hat{H}_{MMSE} = R_H (R_H + \sigma^2 I)^{-1} \hat{H}_{LS}
-           $$
-           where \(R_H\) is the channel covariance matrix and \(\sigma^2\) is noise variance.
+
+             $$
+             \hat{H}_{MMSE} = R_H (R_H + \sigma^2 I)^{-1} \hat{H}_{LS}
+             $$
+  
+             where \(R_H\) is the channel covariance matrix and \(\sigma^2\) is noise variance.
 
 - **LS vs. MMSE Comparison**
 
