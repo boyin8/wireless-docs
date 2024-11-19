@@ -42,9 +42,9 @@ Channel estimation methods can be broadly categorized based on the availability 
             & =(\boldsymbol{Y}-\boldsymbol{X} \hat{\boldsymbol{H}})^{\mathrm{H}}(\boldsymbol{Y}-\boldsymbol{X} \hat{\boldsymbol{H}}) \\
             & =\boldsymbol{Y}^{\mathrm{H}} \boldsymbol{Y}-\boldsymbol{Y}^{\mathrm{H}} \boldsymbol{X} \hat{\boldsymbol{H}}-\hat{\boldsymbol{H}}^{\mathrm{H}} \boldsymbol{X}^{\mathrm{H}} \boldsymbol{Y}+\hat{\boldsymbol{H}}^{\mathrm{H}} \boldsymbol{X}^{\mathrm{H}} \boldsymbol{X} \hat{\boldsymbol{H}}
             \end{aligned}$$
-      
-             $$ \frac{\partial J(\hat{\boldsymbol{H}})}{\partial \hat{\boldsymbol{H}}}=-2\left(\boldsymbol{X}^{\mathrm{H}} \boldsymbol{Y}\right)^*+2\left(\boldsymbol{X}^{\mathrm{H}} \boldsymbol{X} \hat{\boldsymbol{H}}\right)^*=0 $$
-      
+              and
+             \[ \frac{\partial J(\hat{\boldsymbol{H}})}{\partial \hat{\boldsymbol{H}}}=-2\left(\boldsymbol{X}^{\mathrm{H}} \boldsymbol{Y}\right)^*+2\left(\boldsymbol{X}^{\mathrm{H}} \boldsymbol{X} \hat{\boldsymbol{H}}\right)^*=0 \]
+            and
              $$\hat{\boldsymbol{H}}_{\mathrm{LS}}=\left(\boldsymbol{X}^{\mathrm{H}} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{\mathrm{H}} \boldsymbol{Y}=\boldsymbol{X}^{-1} \boldsymbol{Y}$$
 
              where \(Y\) is the received signal, \(X\) is the pilot symbol.
