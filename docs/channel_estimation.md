@@ -49,6 +49,14 @@ Channel estimation methods can be broadly categorized based on the availability 
 
              where \(Y\) is the received signal, \(X\) is the pilot symbol.
 
+           <div class="result" markdown>
+
+            $$
+            \cos x=\sum_{k=0}^{\infty}\frac{(-1)^k}{(2k)!}x^{2k}
+            $$
+            
+            </div>
+
     2. **Minimum Mean Square Error (MMSE)**:
        
          - Incorporates noise statistics and prior knowledge of the channel.
