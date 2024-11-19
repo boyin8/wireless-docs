@@ -56,27 +56,27 @@ Channel estimation methods can be broadly categorized based on the availability 
 
 - **LS vs. MMSE Comparison**
 
-The LS and MMSE channel estimation methods exhibit distinct advantages and limitations, making them suitable for different scenarios:
+    The LS and MMSE channel estimation methods exhibit distinct advantages and limitations, making them suitable for different scenarios:
 
-    - **Noise Sensitivity**:
-    
-        - LS estimation is highly susceptible to noise, especially in low-SNR environments, as it does not account for noise statistics.
-        - MMSE estimation leverages noise characteristics to suppress the impact of noise, providing superior accuracy in noisy conditions.
-    
-    - **Use of Prior Information**:
-    
-        - LS estimation assumes no prior knowledge of the channel and performs a straightforward estimation.
-        - MMSE estimation utilizes statistical properties of the channel (e.g., correlation, delay spread), resulting in a more robust estimation.
-    
-    - **Complexity**:
-    
-        - LS estimation is computationally simple, requiring only a division operation, making it suitable for systems with stringent latency or processing constraints.
-        - MMSE estimation involves matrix inversion and requires the covariance matrix, resulting in higher computational complexity.
-    
-    - **Mean Square Error (MSE)**:
-    
-        - LS estimation minimizes instantaneous errors but does not guarantee the smallest MSE.
-        - MMSE estimation explicitly minimizes the MSE, ensuring optimal performance in terms of estimation accuracy when channel statistics are available.
+      - **Noise Sensitivity**:
+      
+          - LS estimation is highly susceptible to noise, especially in low-SNR environments, as it does not account for noise statistics.
+          - MMSE estimation leverages noise characteristics to suppress the impact of noise, providing superior accuracy in noisy conditions.
+      
+      - **Use of Prior Information**:
+      
+          - LS estimation assumes no prior knowledge of the channel and performs a straightforward estimation.
+          - MMSE estimation utilizes statistical properties of the channel (e.g., correlation, delay spread), resulting in a more robust estimation.
+      
+      - **Complexity**:
+      
+          - LS estimation is computationally simple, requiring only a division operation, making it suitable for systems with stringent latency or processing constraints.
+          - MMSE estimation involves matrix inversion and requires the covariance matrix, resulting in higher computational complexity.
+      
+      - **Mean Square Error (MSE)**:
+      
+          - LS estimation minimizes instantaneous errors but does not guarantee the smallest MSE.
+          - MMSE estimation explicitly minimizes the MSE, ensuring optimal performance in terms of estimation accuracy when channel statistics are available.
 
 ### **2.2.2 Blind Estimation**
 - **Description**: Estimates the channel without relying on pilot symbols, using the statistical properties of received signals.
