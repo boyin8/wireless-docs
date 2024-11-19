@@ -64,13 +64,13 @@ Channel estimation methods can be broadly categorized based on the availability 
              where $\hat{\boldsymbol{H}}$ denots the estimation of $\boldsymbol{H}$. Furthermore, we can calculate the mean square error (MSE) of LS method as follows:
 
               $$
-              \begin{aligned}
-              \mathrm{MSE}_{\mathrm{LS}} & =E\left\{\left(\boldsymbol{H}-\hat{\boldsymbol{H}}_{\mathrm{LS}}\right)^{\mathrm{H}}\left(\boldsymbol{H}-\boldsymbol{H}_{\mathrm{LS}}\right)\right\} \\
-              & =E\left\{\left(\boldsymbol{H}-\boldsymbol{X}^{-1} \boldsymbol{Y}\right)^{\mathrm{H}}\left(\boldsymbol{H}-\boldsymbol{X}^{-1} \boldsymbol{Y}\right)\right\} \\
-              & =E\left\{\left(\boldsymbol{X}^{-1} \boldsymbol{Z}\right)^{\mathrm{H}}\left(\boldsymbol{X}^{-1} \boldsymbol{Z}\right)\right\} \\
-              & =E\left\{\boldsymbol{Z}^{\mathrm{H}}\left(\boldsymbol{X} \boldsymbol{X}^{\mathrm{H}}\right)^{-1} \boldsymbol{Z}\right\} \\
-              & =\frac{\sigma_z^2}{\sigma_x^2},
-              \end{aligned}
+                \begin{aligned}
+                \mathrm{MSE}_{\mathrm{LS}} & =E\left\{\left(\boldsymbol{H}-\hat{\boldsymbol{H}}_{\mathrm{LS}}\right)^{\mathrm{H}}\left(\boldsymbol{H}-\boldsymbol{H}_{\mathrm{LS}}\right)\right\} \\
+                & =E\left\{\left(\boldsymbol{H}-\boldsymbol{X}^{-1} \boldsymbol{Y}\right)^{\mathrm{H}}\left(\boldsymbol{H}-\boldsymbol{X}^{-1} \boldsymbol{Y}\right)\right\} \\
+                & =E\left\{\left(\boldsymbol{X}^{-1} \boldsymbol{Z}\right)^{\mathrm{H}}\left(\boldsymbol{X}^{-1} \boldsymbol{Z}\right)\right\} \\
+                & =E\left\{\boldsymbol{Z}^{\mathrm{H}}\left(\boldsymbol{X} \boldsymbol{X}^{\mathrm{H}}\right)^{-1} \boldsymbol{Z}\right\} \\
+                & =\frac{\sigma_z^2}{\sigma_x^2},
+                \end{aligned}
               $$
 
                where MSE is inversely proportional to the signal-to-noise (SNR) ratio, $\frac{\sigma_x^2}{\sigma_z^2}$. This implies that the lower SNR, the less effective the LS is, because it amplifies the noise.
