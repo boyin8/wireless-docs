@@ -90,10 +90,10 @@ Wireless channels are commonly classified based on their characteristics:
 - **Path Loss Formula**:
 
   $$
-  PL(d) = 20 \log_{10}(d) + 20 \log_{10}(f) - 147.55 \quad (\text{dB})
+  PL(d) = 20 \log_{10}(d) + 20 \log_{10}(f) + 20 \log_{10}(\frac{4\pi}{c}) \quad (\text{dB})
   $$
 
-  where \(d\) denotes distance (in meters), and \(f\) denotes frequency (in Hz).
+  where \(d\) denotes distance (in meters), \(f\) denotes frequency (in Hz), and \(c\) denotes speed of light (in m/s).
 
 ### **1.3.2 Rayleigh Fading Model**
 - **Description**:
