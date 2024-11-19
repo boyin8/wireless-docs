@@ -54,9 +54,7 @@ Channel estimation methods can be broadly categorized based on the availability 
   
              where \(R_H\) is the channel covariance matrix and \(\sigma^2\) is noise variance.
 
-- **LS vs. MMSE Comparison**
-
-    The LS and MMSE channel estimation methods exhibit distinct advantages and limitations, making them suitable for different scenarios:
+- **LS vs. MMSE Comparison**:The LS and MMSE channel estimation methods exhibit distinct advantages and limitations, making them suitable for different scenarios.
 
       - **Noise Sensitivity**:
       
