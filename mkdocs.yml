@@ -10,6 +10,7 @@ copyright: Copyright &copy; 2024 ~ now | Bo Yin
 nav:
   - Home: index.md
   - Wireless Channel Models: channel_models.md
+  - Channel Estimation: channel_estimation.md
 
 theme:
   name: material
