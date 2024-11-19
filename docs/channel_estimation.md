@@ -12,7 +12,7 @@ Channel estimation refers to the process of determining the channel characterist
   - Phase and amplitude distortions.
   - Frequency-selective or time-varying fading.
 
-### **Importance of Channel Estimation**
+### Importance of Channel Estimation
 - **Equalization**: Removes channel-induced distortions.
 - **Beamforming**: Requires accurate CSI to align transmitted signals.
 - **Adaptive Modulation**: Enables the system to dynamically adjust modulation schemes based on channel conditions.
@@ -34,29 +34,32 @@ Channel estimation methods can be broadly categorized based on the availability 
 
     1. **Least Squares (LS)**:
 
-       - Solves for channel coefficients by minimizing the squared error between received and expected signals.
-       - Formula:
-       \[
-       \hat{H}_{LS} = \frac{Y}{X}
-       \]
-       where \(Y\) is the received signal, \(X\) is the pilot symbol.
+         - Solves for channel coefficients by minimizing the squared error between received and expected signals.
+         - Formula:
+           $$
+           \hat{H}_{LS} = \frac{Y}{X}
+           $$
+           where \(Y\) is the received signal, \(X\) is the pilot symbol.
 
   2. **Minimum Mean Square Error (MMSE)**:
        
-       - Incorporates noise statistics and prior knowledge of the channel.
-       - Formula:
-       \[
-       \hat{H}_{MMSE} = R_H (R_H + \sigma^2 I)^{-1} \hat{H}_{LS}
-       \]
-       where \(R_H\) is the channel covariance matrix and \(\sigma^2\) is noise variance.
+         - Incorporates noise statistics and prior knowledge of the channel.
+         - Formula:
+           $$
+           \hat{H}_{MMSE} = R_H (R_H + \sigma^2 I)^{-1} \hat{H}_{LS}
+           $$
+           where \(R_H\) is the channel covariance matrix and \(\sigma^2\) is noise variance.
 
 ### **2.2.2 Blind Estimation**
 - **Description**: Estimates the channel without relying on pilot symbols, using the statistical properties of received signals.
 - **Advantages**:
-  - Higher spectral efficiency due to no overhead for pilot symbols.
+    
+    - Higher spectral efficiency due to no overhead for pilot symbols.
+
 - **Challenges**:
-  - Requires a large number of observations for accurate results.
-  - Computationally complex.
+    
+    - Requires a large number of observations for accurate results.
+    - Computationally complex.
 
 ### **2.2.3 Semi-blind Estimation**
 - Combines pilot-based and blind estimation techniques.
@@ -142,4 +145,4 @@ plt.show()
 ---
 
 ## **2.5 Concludsion**
-Channel estimation is a cornerstone of modern wireless communication systems, enabling equalization, beamforming, and adaptive modulation. Techniques like LS and MMSE are widely used due to their simplicity and accuracy, while interpolation methods ensure reliable channel estimates across all subcarriers in OFDM systems. Future developments in machine learning may further improve estimation accuracy in highly dynamic environments.
+Channel estimation is a cornerstone of modern wireless communication systems, enabling equalization, beamforming, and adaptive modulation. Techniques like LS and MMSE are widely used due to their simplicity and accuracy, while interpolation methods ensure reliable channel estimates across all subcarriers in OFDM systems.
