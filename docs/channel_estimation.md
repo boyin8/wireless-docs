@@ -90,56 +90,7 @@ The following Python code demonstrates LS and MMSE-based channel estimation in a
 
 ### **Code Implementation**
 ``` py
-import numpy as np
-import matplotlib.pyplot as plt
 
-# Parameters
-num_subcarriers = 64  # Total number of subcarriers
-num_pilots = 16       # Number of pilot subcarriers
-snr_db = 20           # Signal-to-noise ratio in dB
-
-# Generate random channel and pilot symbols
-true_channel = np.random.randn(num_subcarriers) + 1j * np.random.randn(num_subcarriers)
-pilot_indices = np.linspace(0, num_subcarriers - 1, num_pilots, dtype=int)
-pilot_symbols = np.ones(num_pilots, dtype=complex)  # Known pilot symbols
-
-# Simulate received pilot signals with noise
-noise = (np.random.randn(num_pilots) + 1j * np.random.randn(num_pilots)) * 10**(-snr_db / 20)
-received_pilots = true_channel[pilot_indices] * pilot_symbols + noise
-
-# LS Estimation
-ls_estimated_channel = np.zeros(num_subcarriers, dtype=complex)
-ls_estimated_channel[pilot_indices] = received_pilots / pilot_symbols
-
-# MMSE Estimation (assuming known channel statistics)
-noise_var = 10**(-snr_db / 10)
-R_h = np.eye(num_pilots)  # Simplified covariance matrix
-mmse_estimated_channel = np.zeros(num_subcarriers, dtype=complex)
-for i in range(num_pilots):
-    mmse_estimated_channel[pilot_indices[i]] = (
-        np.dot(R_h[i], received_pilots)
-        / (R_h[i, i] + noise_var)
-    )
-
-# Interpolation for other subcarriers (using linear interpolation for simplicity)
-linear_interpolated_ls = np.interp(
-    np.arange(num_subcarriers), pilot_indices, np.abs(ls_estimated_channel[pilot_indices])
-)
-linear_interpolated_mmse = np.interp(
-    np.arange(num_subcarriers), pilot_indices, np.abs(mmse_estimated_channel[pilot_indices])
-)
-
-# Plot Results
-plt.figure(figsize=(10, 6))
-plt.plot(np.abs(true_channel), label="True Channel", linewidth=2)
-plt.plot(linear_interpolated_ls, '--', label="LS Estimated (Interpolated)")
-plt.plot(linear_interpolated_mmse, ':', label="MMSE Estimated (Interpolated)")
-plt.xlabel("Subcarrier Index")
-plt.ylabel("Magnitude")
-plt.title("Channel Estimation in OFDM System")
-plt.legend()
-plt.grid()
-plt.show()
 ```
 
 ---
