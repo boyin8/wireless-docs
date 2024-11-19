@@ -146,3 +146,8 @@ plt.show()
 
 ## **2.5 Concludsion**
 Channel estimation is a cornerstone of modern wireless communication systems, enabling equalization, beamforming, and adaptive modulation. Techniques like LS and MMSE are widely used due to their simplicity and accuracy, while interpolation methods ensure reliable channel estimates across all subcarriers in OFDM systems.
+
+---
+
+## **References**
+- Cho, Yong Soo, Jaekwon Kim, Won Y. Yang, and Chung G. Kang. MIMO-OFDM wireless communications with MATLAB. John Wiley & Sons, 2010.
