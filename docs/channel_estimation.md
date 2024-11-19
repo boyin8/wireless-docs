@@ -37,23 +37,17 @@ Channel estimation methods can be broadly categorized based on the availability 
          - Solves for channel coefficients by minimizing the squared error between received and expected signals.
          - Formula:
 
-            $$
-            \begin{aligned}
+            $$\begin{aligned}
             J(\hat{\boldsymbol{H}}) & =\|\boldsymbol{Y}-\boldsymbol{X} \hat{\boldsymbol{H}}\|^2 \\
             & =(\boldsymbol{Y}-\boldsymbol{X} \hat{\boldsymbol{H}})^{\mathrm{H}}(\boldsymbol{Y}-\boldsymbol{X} \hat{\boldsymbol{H}}) \\
             & =\boldsymbol{Y}^{\mathrm{H}} \boldsymbol{Y}-\boldsymbol{Y}^{\mathrm{H}} \boldsymbol{X} \hat{\boldsymbol{H}}-\hat{\boldsymbol{H}}^{\mathrm{H}} \boldsymbol{X}^{\mathrm{H}} \boldsymbol{Y}+\hat{\boldsymbol{H}}^{\mathrm{H}} \boldsymbol{X}^{\mathrm{H}} \boldsymbol{X} \hat{\boldsymbol{H}}
-            \end{aligned}
-            $$
+            \end{aligned}$$
       
-           $$
-          \frac{\partial J(\hat{\boldsymbol{H}})}{\partial \hat{\boldsymbol{H}}}=-2\left(\boldsymbol{X}^{\mathrm{H}} \boldsymbol{Y}\right)^*+2\left(\boldsymbol{X}^{\mathrm{H}} \boldsymbol{X} \hat{\boldsymbol{H}}\right)^*=0
-            $$
+             $$ \frac{\partial J(\hat{\boldsymbol{H}})}{\partial \hat{\boldsymbol{H}}}=-2\left(\boldsymbol{X}^{\mathrm{H}} \boldsymbol{Y}\right)^*+2\left(\boldsymbol{X}^{\mathrm{H}} \boldsymbol{X} \hat{\boldsymbol{H}}\right)^*=0 $$
       
-             $$
-            \hat{\boldsymbol{H}}_{\mathrm{LS}}=\left(\boldsymbol{X}^{\mathrm{H}} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{\mathrm{H}} \boldsymbol{Y}=\boldsymbol{X}^{-1} \boldsymbol{Y}
-            $$
+             $$\hat{\boldsymbol{H}}_{\mathrm{LS}}=\left(\boldsymbol{X}^{\mathrm{H}} \boldsymbol{X}\right)^{-1} \boldsymbol{X}^{\mathrm{H}} \boldsymbol{Y}=\boldsymbol{X}^{-1} \boldsymbol{Y}$$
 
-           where \(Y\) is the received signal, \(X\) is the pilot symbol.
+             where \(Y\) is the received signal, \(X\) is the pilot symbol.
 
     2. **Minimum Mean Square Error (MMSE)**:
        
